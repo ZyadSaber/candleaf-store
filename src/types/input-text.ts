@@ -1,8 +1,8 @@
-import { OnChangeType } from "../../types";
+import { OnChangeType } from ".";
 
 export interface InputTextProps {
-  value?: string | number;
-  name?: string;
+  value?: string;
+  name: string;
   label?: string;
   onChange?: OnChangeType;
   disabled?: boolean;
@@ -11,9 +11,10 @@ export interface InputTextProps {
   placeHolder?: string;
   padding?: number | string;
   margin?: number | string;
-  className?: string;
   noAuthorization?: boolean;
   required?: boolean;
   height?: number | string;
-  dir?: "rtl" | "ltr";
+  addBeforeElement?: (value?: string) => JSX.Element;
+  addAfterElement?: (value?: string) => JSX.Element;
+  dir?: string;
 }

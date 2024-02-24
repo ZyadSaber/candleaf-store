@@ -1,7 +1,8 @@
 import { useCallback } from "react";
-import FloatingLabel from "../../packages/floating-label";
+import Compact from "antd/es/space/Compact";
+import LabelContainer from "../label-container";
 import { StyledInput } from "./styled";
-import { InputTextProps } from "./interface";
+import { InputTextProps } from "../../types/input-text";
 
 const InputText = ({
   disabled,
@@ -14,8 +15,9 @@ const InputText = ({
   type,
   placeHolder,
   margin,
-  className,
   required,
+  addBeforeElement,
+  addAfterElement,
   dir,
   ...props
 }: InputTextProps) => {
@@ -24,32 +26,35 @@ const InputText = ({
       const {
         target: { value },
       } = event;
-      onChange && onChange({ name: name, value });
+      onChange && onChange({ name, value });
     },
     [name, onChange]
   );
 
   return (
-    <FloatingLabel
+    <LabelContainer
       label={label}
-      hasContent={!!value}
       margin={margin}
       height={height}
       width={width}
+      dir={dir}
     >
-      <StyledInput
-        dir={dir}
-        placeholder={placeHolder}
-        disabled={disabled}
-        required={required}
-        onChange={handleChange}
-        width="100%"
-        className={className}
-        value={value}
-        type={type}
-        {...props}
-      />
-    </FloatingLabel>
+      <Compact>
+        {addBeforeElement && addBeforeElement(value)}
+        <StyledInput
+          placeholder={placeHolder}
+          disabled={disabled}
+          required={required}
+          onChange={handleChange}
+          dir={dir}
+          width="100%"
+          value={value}
+          type={type}
+          {...props}
+        />
+        {addAfterElement && addAfterElement(value)}
+      </Compact>
+    </LabelContainer>
   );
 };
 
