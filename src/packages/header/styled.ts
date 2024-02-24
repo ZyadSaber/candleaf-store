@@ -10,4 +10,5 @@ export const StyledHeader = styled(Header)<{ backgroundColor?: string }>`
   align-items: center;
   display: flex;
   justify-content: space-around;
+  line-height: normal;
 `;
