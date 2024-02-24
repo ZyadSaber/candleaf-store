@@ -1,8 +1,10 @@
+import { OnChangeType } from "../../types";
+
 export interface InputTextProps {
   value?: string | number;
   name?: string;
   label?: string;
-  onChange?: any;
+  onChange?: OnChangeType;
   disabled?: boolean;
   width?: number | string;
   type?: string;
