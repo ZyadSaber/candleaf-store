@@ -3,11 +3,11 @@ import usePrevious from "./usePrevious";
 import {RecordWithAnyType} from "../types"
 
 interface useFormManagerProps {
-  initialValues?: RecordWithAnyType;
+  initialValues: RecordWithAnyType;
 }
 
-const useFormManager = ({ initialValues }: useFormManagerProps) => {
-  const [state, setState] = useState<typeof initialValues>(initialValues);
+const useFormManager = <T>({ initialValues }: useFormManagerProps) => {
+  const [state, setState] = useState<typeof initialValues | T | any>(initialValues);
 
   const hasAnyFieldChangedRef = useRef(false);
   const preValues = usePrevious(initialValues);
@@ -26,7 +26,6 @@ const useFormManager = ({ initialValues }: useFormManagerProps) => {
   const resetForm = useCallback(() => {
     hasAnyFieldChangedRef.current = false;
     setState(() => initialValues);
-    // @ts-ignore
   }, [initialValues]);
 
   useEffect(
@@ -64,20 +63,12 @@ const useFormManager = ({ initialValues }: useFormManagerProps) => {
     [state]
   );
 
-  const handleArrayChange = useCallback(
-    ({ name, value }: any) => {
-      setState({ ...state, [name]: [...state[name], value] });
-    },
-    [state]
-  );
-
   return {
     state,
     onChange,
     resetForm,
     handleRootState: setState,
     handleSelectWithLabelChange,
-    handleArrayChange,
     handleMultiInput
   };
 };

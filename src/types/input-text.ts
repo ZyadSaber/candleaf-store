@@ -17,4 +17,5 @@ export interface InputTextProps {
   addBeforeElement?: (value?: string) => JSX.Element;
   addAfterElement?: (value?: string) => JSX.Element;
   dir?: string;
+  onPressEnter?: () => void;
 }

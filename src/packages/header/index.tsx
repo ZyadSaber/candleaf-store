@@ -1,56 +1,80 @@
-import { useCallback, useState } from "react";
-import {useNavigate} from "react-router-dom";
-import {Drawer} from "antd"
-import Flex from "../../common/flex"
+import { useCallback, memo } from "react";
+import { useNavigate } from "react-router-dom";
+import { Drawer } from "antd";
+import { useFormManager } from "../../hooks";
+import Flex from "../../common/flex";
 import { primaryColors } from "../../constants";
 import SearchInputField from "../../common/search-input-field";
+import DrawerHeader from "./partials/DrawerHeader";
+import DrawerBody from "./partials/DrawerBody";
 import { StyledHeader, StyledImage, StyledCart } from "./styled";
 
-const Header = () => {
+const Header = memo(() => {
   const { primary } = primaryColors;
   const navigate = useNavigate();
-  const [visible, setVisible] = useState(false)
 
-  const navigateToHome = useCallback(()=>{
-    navigate("/")
-  },[navigate]);
+  const {
+    state: { keyWord, visible },
+    onChange,
+  } = useFormManager({
+    initialValues: {
+      visible: false,
+      keyWord: "",
+    },
+  });
 
-  const handleSearch = useCallback((keyWord?: string)=>{
-    navigate(`/home?keyword=${keyWord}`)
-  },[navigate]);
+  const navigateToHome = useCallback(() => {
+    navigate("/");
+  }, [navigate]);
 
-  const handleDrawerState = useCallback(()=>setVisible(!visible),[visible])
+  const handleSearch = useCallback(() => {
+    navigate(`/products?keyword=${keyWord}`);
+  }, [navigate, keyWord]);
+
+  const handleDrawerState = useCallback(
+    () =>
+      onChange({
+        name: "visible",
+        value: !visible,
+      }),
+    [onChange, visible]
+  );
 
   return (
     <>
-    <StyledHeader backgroundColor={primary}>
-      <SearchInputField name="test" width="15%" onSearch={handleSearch} />
-      <StyledImage onClick={navigateToHome} src="/src/imgs/icon.png" alt="" />
-      <Flex gap="5px" wrap width="15%" height="100%" align="center" justifyContent="center">
-      < StyledCart onClick={handleDrawerState}/>
-      </Flex>
-    </StyledHeader>
-    <Drawer
+      <StyledHeader backgroundColor={primary}>
+        <SearchInputField
+          width="15%"
+          onSearch={handleSearch}
+          name="keyWord"
+          value={keyWord}
+          onChange={onChange}
+          onPressEnter={handleSearch}
+        />
+        <StyledImage onClick={navigateToHome} src="/src/imgs/icon.png" alt="" />
+        <Flex
+          gap="5px"
+          wrap
+          width="15%"
+          height="100%"
+          align="center"
+          justifyContent="center"
+        >
+          <StyledCart onClick={handleDrawerState} />
+        </Flex>
+      </StyledHeader>
+      <Drawer
         title="Drawer with extra actions"
         placement="right"
         width={500}
         onClose={handleDrawerState}
         open={visible}
-        extra={
-          <>
-            <button >Cancel</button>
-            <button >
-              OK
-            </button>
-          </>
-        }
+        extra={<DrawerHeader />}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <DrawerBody />
       </Drawer>
     </>
   );
-};
+});
 
 export default Header;
