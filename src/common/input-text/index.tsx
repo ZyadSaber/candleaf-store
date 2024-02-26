@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import Compact from "antd/es/space/Compact";
 import LabelContainer from "../label-container";
 import { StyledInput } from "./styled";
@@ -31,6 +31,10 @@ const InputText = ({
     [name, onChange]
   );
 
+  const inputRef = useRef<any>(null);
+
+  console.log(inputRef);
+
   return (
     <LabelContainer
       label={label}
@@ -42,6 +46,7 @@ const InputText = ({
       <Compact>
         {addBeforeElement && addBeforeElement(value)}
         <StyledInput
+          ref={inputRef}
           placeholder={placeHolder}
           disabled={disabled}
           required={required}
