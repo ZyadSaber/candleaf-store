@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import PageRoutes from "./routes";
 import BasePage from "../packages/base-page";
+import NotFoundPage from "../packages/not-found-page";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,7 +17,7 @@ export const router = createBrowserRouter(
           );
         })}
       </Route>
-      <Route path="*" element={undefined} />
+      <Route path="*" element={<NotFoundPage />} />
     </Route>
   )
 );

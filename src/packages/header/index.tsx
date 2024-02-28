@@ -1,17 +1,21 @@
 import { useCallback, memo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Drawer } from "antd";
+import { Drawer, Dropdown } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import { useFormManager } from "../../hooks";
+import SearchInputField from "../../common/search-input-field";
 import Flex from "../../common/flex";
 import { primaryColors } from "../../constants";
-import SearchInputField from "../../common/search-input-field";
 import DrawerHeader from "./partials/DrawerHeader";
 import DrawerBody from "./partials/DrawerBody";
-import { StyledHeader, StyledImage, StyledCart } from "./styled";
+import { StyledHeader, StyledImage, StyledCart, StyledText } from "./styled";
+import { items } from "./constants";
 
 const Header = memo(() => {
-  const { primary } = primaryColors;
+  const { primary, lightGray } = primaryColors;
   const navigate = useNavigate();
+
+  const isUserLoggedIn = false;
 
   const {
     state: { keyWord, visible },
@@ -27,6 +31,10 @@ const Header = memo(() => {
     navigate("/");
   }, [navigate]);
 
+  const navigateToSignIn = useCallback(() => {
+    navigate("/sign_in");
+  }, [navigate]);
+
   const handleSearch = useCallback(() => {
     navigate(`/products?keyword=${keyWord}`);
   }, [navigate, keyWord]);
@@ -40,26 +48,54 @@ const Header = memo(() => {
     [onChange, visible]
   );
 
+  const headerSidesProps = {
+    width: "25%",
+    wrap: true,
+    justifyContent: "center",
+    align: "center",
+    height: "100%",
+    gap: "20px",
+  };
+
   return (
     <>
       <StyledHeader backgroundColor={primary}>
-        <SearchInputField
-          width="15%"
-          onSearch={handleSearch}
-          name="keyWord"
-          value={keyWord}
-          onChange={onChange}
-          onPressEnter={handleSearch}
-        />
+        <Flex {...headerSidesProps} mobileHidden>
+          <SearchInputField
+            width="250px"
+            onSearch={handleSearch}
+            name="keyWord"
+            value={keyWord}
+            onChange={onChange}
+            onPressEnter={handleSearch}
+          />
+        </Flex>
         <StyledImage onClick={navigateToHome} src="/src/imgs/icon.png" alt="" />
         <Flex
-          gap="5px"
-          wrap
-          width="15%"
-          height="100%"
+          {...headerSidesProps}
+          mobileWidth="auto"
           align="center"
           justifyContent="center"
         >
+          <Dropdown
+            menu={{ items: isUserLoggedIn ? items : [] }}
+            placement="bottom"
+          >
+            <Flex
+              padding="7px 14px"
+              width="110PX"
+              align="center"
+              justifyContent="space-around"
+              backgroundColor={lightGray}
+              gap="5px"
+              mobileWidth="auto"
+            >
+              <StyledText onClick={!isUserLoggedIn && navigateToSignIn}>
+                log in
+              </StyledText>
+              <UserOutlined />
+            </Flex>
+          </Dropdown>
           <StyledCart onClick={handleDrawerState} />
         </Flex>
       </StyledHeader>
@@ -71,6 +107,16 @@ const Header = memo(() => {
         open={visible}
         extra={<DrawerHeader />}
       >
+        <Flex width="100%" desktopHidden>
+          <SearchInputField
+            width="250px"
+            onSearch={handleSearch}
+            name="keyWord"
+            value={keyWord}
+            onChange={onChange}
+            onPressEnter={handleSearch}
+          />
+        </Flex>
         <DrawerBody />
       </Drawer>
     </>
