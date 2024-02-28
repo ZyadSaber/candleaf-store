@@ -1,5 +1,8 @@
 import styled from "styled-components";
+import { deviceSizes } from "../../constants";
 import { flexProps } from "./interface";
+
+const { mobile, desktop } = deviceSizes;
 
 export const StyledFlex = styled.div<flexProps>`
   display: flex;
@@ -23,4 +26,16 @@ export const StyledFlex = styled.div<flexProps>`
   ${({ overFlowY }) => overFlowY && `overflow-y: ${overFlowY};`};
   ${({ overFlowX }) => overFlowX && `overflow-y: ${overFlowX};`};
   ${({ minHeight }) => minHeight && `min-height: ${minHeight};`};
+
+  //@media query
+  @media ${mobile} {
+    ${({ mobileHidden, mobileWidth }) =>
+      mobileHidden ? `display: none` : `width: ${mobileWidth}`}
+  }
+  @media ${desktop} {
+    ${({ desktopHidden, desktopWidth }) =>
+      desktopHidden
+        ? `display: none`
+        : `width: ${desktopWidth && desktopWidth}`}
+  }
 `;

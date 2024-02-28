@@ -22,4 +22,12 @@ export interface flexProps {
   overFlowX?: string;
   overFlowY?: string;
   dir?: "ltr" | "rtl";
+
+  //@media query
+  mobileHidden?: boolean;
+  desktopHidden?: boolean;
+
+  //@media width
+  mobileWidth?: string;
+  desktopWidth?: string;
 }

@@ -9,7 +9,8 @@ const BasePage = () => {
     <Layout>
       <Header />
       <Content style={{
-        height: "86vh"
+        height: "88vh",
+        maxHeight: "88vh",
       }}>
       <Outlet />
       </Content>
