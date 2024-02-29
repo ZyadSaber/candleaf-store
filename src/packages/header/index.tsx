@@ -5,6 +5,7 @@ import { UserOutlined } from "@ant-design/icons";
 import { useFormManager } from "../../hooks";
 import SearchInputField from "../../common/search-input-field";
 import Flex from "../../common/flex";
+import { useSelectAppProvider } from "../app-config-provider";
 import { primaryColors } from "../../constants";
 import DrawerHeader from "./partials/DrawerHeader";
 import DrawerBody from "./partials/DrawerBody";
@@ -14,6 +15,12 @@ import { items } from "./constants";
 const Header = memo(() => {
   const { primary, lightGray } = primaryColors;
   const navigate = useNavigate();
+  const {
+    state: {
+      authorization,
+      display_name
+    },
+  } = useSelectAppProvider();
 
   const isUserLoggedIn = false;
 
