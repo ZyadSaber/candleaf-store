@@ -10,6 +10,8 @@ export interface FloatingLabelContainerPros {
 export interface floatingLabelProps extends FloatingLabelContainerPros {
   name?: string;
   label?: string;
+  labelFontWeight?: string | number;
+  labelFontSize?: string;
   children?: ReactNode;
   hidden?: boolean;
   dir?: string;

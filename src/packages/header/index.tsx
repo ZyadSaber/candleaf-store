@@ -5,6 +5,7 @@ import { UserOutlined } from "@ant-design/icons";
 import { useFormManager } from "../../hooks";
 import SearchInputField from "../../common/search-input-field";
 import Flex from "../../common/flex";
+import { useSelectAppProvider } from "../app-config-provider";
 import { primaryColors } from "../../constants";
 import DrawerHeader from "./partials/DrawerHeader";
 import DrawerBody from "./partials/DrawerBody";
@@ -14,6 +15,9 @@ import { items } from "./constants";
 const Header = memo(() => {
   const { primary, lightGray } = primaryColors;
   const navigate = useNavigate();
+  const {
+    state: { authorization, display_name },
+  } = useSelectAppProvider();
 
   const isUserLoggedIn = false;
 
@@ -32,8 +36,8 @@ const Header = memo(() => {
   }, [navigate]);
 
   const navigateToSignIn = useCallback(() => {
-    navigate("/sign_in");
-  }, [navigate]);
+    navigate(authorization ? "/account" : "/account/log_in");
+  }, [authorization, navigate]);
 
   const handleSearch = useCallback(() => {
     navigate(`/products?keyword=${keyWord}`);
@@ -91,7 +95,7 @@ const Header = memo(() => {
               mobileWidth="auto"
             >
               <StyledText onClick={!isUserLoggedIn && navigateToSignIn}>
-                log in
+                {authorization ? display_name : "log in"}
               </StyledText>
               <UserOutlined />
             </Flex>

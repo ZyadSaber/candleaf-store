@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { primaryColors } from "../../constants/colors";
 import { FloatingLabelContainerPros } from "./interface";
 
-const { inputBorderColor } = primaryColors;
+const { primary } = primaryColors;
 
 export const StyledLabelContainer = styled.div<FloatingLabelContainerPros>`
   margin: ${({ margin }) => margin};
@@ -12,9 +12,15 @@ export const StyledLabelContainer = styled.div<FloatingLabelContainerPros>`
   flex-wrap: wrap;
   display: flex;
   justify-content: center;
+  gap: 7px;
 `;
 
-export const StyledLabel = styled.label`
-  color: ${inputBorderColor};
+export const StyledLabel = styled.label<{
+  labelFontWeight?: string | number;
+  labelFontSize?: string;
+}>`
+  color: ${primary};
   margin: 0 5px;
+  font-weight: ${({ labelFontWeight }) => labelFontWeight};
+  font-size: ${({ labelFontSize }) => labelFontSize};
 `;
