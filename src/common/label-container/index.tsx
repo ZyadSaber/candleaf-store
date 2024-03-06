@@ -10,6 +10,8 @@ const LabelContainer = ({
   children,
   hidden,
   dir,
+  labelFontWeight,
+  labelFontSize,
 }: floatingLabelProps) => {
   return (
     <StyledLabelContainer
@@ -19,7 +21,15 @@ const LabelContainer = ({
       hidden={hidden}
       dir={dir}
     >
-      {label && <StyledLabel htmlFor={name}>{label}</StyledLabel>}
+      {label && (
+        <StyledLabel
+          labelFontSize={labelFontSize}
+          labelFontWeight={labelFontWeight}
+          htmlFor={name}
+        >
+          {label}
+        </StyledLabel>
+      )}
       {children}
     </StyledLabelContainer>
   );

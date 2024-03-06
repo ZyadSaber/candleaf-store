@@ -11,9 +11,24 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<BasePage />}>
-        {PageRoutes.map(({ path, Component }) => {
+        {PageRoutes.map(({ path, Component, nestedRoutes }) => {
           return (
-            <Route path={path} key={path.toString()} element={<Component />} />
+            <Route
+              path={path}
+              key={path.toString()}
+              element={Component ? <Component /> : null}
+            >
+              {nestedRoutes &&
+                nestedRoutes.map(
+                  ({ path: nestedPath, Component: NestedComponent }) => (
+                    <Route
+                      path={nestedPath}
+                      key={path.toString()}
+                      element={<NestedComponent />}
+                    />
+                  )
+                )}
+            </Route>
           );
         })}
       </Route>

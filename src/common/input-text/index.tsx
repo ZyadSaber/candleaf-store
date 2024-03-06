@@ -1,7 +1,8 @@
 import { useCallback } from "react";
 import Compact from "antd/es/space/Compact";
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import LabelContainer from "../label-container";
-import { StyledInput } from "./styled";
+import { StyledInput, StyledPassword } from "./styled";
 import { InputTextProps } from "../../types/input-text";
 
 const InputText = ({
@@ -19,9 +20,10 @@ const InputText = ({
   addBeforeElement,
   addAfterElement,
   dir,
+  labelFontWeight,
+  labelFontSize,
   ...props
 }: InputTextProps) => {
-
   const handleChange = useCallback(
     (event: { target: { value: string } }) => {
       const {
@@ -32,6 +34,20 @@ const InputText = ({
     [name, onChange]
   );
 
+  const computedProps = {
+    disabled,
+    placeHolder,
+    required,
+    onChange: handleChange,
+    dir,
+    width: "100%",
+    value,
+    type,
+    iconRender: (visible: boolean) =>
+      visible ? <EyeOutlined /> : <EyeInvisibleOutlined />,
+    ...props,
+  };
+
   return (
     <LabelContainer
       label={label}
@@ -39,20 +55,16 @@ const InputText = ({
       height={height}
       width={width}
       dir={dir}
+      labelFontWeight={labelFontWeight}
+      labelFontSize={labelFontSize}
     >
       <Compact>
         {addBeforeElement && addBeforeElement(value)}
-        <StyledInput
-          placeholder={placeHolder}
-          disabled={disabled}
-          required={required}
-          onChange={handleChange}
-          dir={dir}
-          width="100%"
-          value={value}
-          type={type}
-          {...props}
-        />
+        {type === "password" ? (
+          <StyledPassword {...computedProps} />
+        ) : (
+          <StyledInput {...computedProps} />
+        )}
         {addAfterElement && addAfterElement(value)}
       </Compact>
     </LabelContainer>

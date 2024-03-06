@@ -12,6 +12,7 @@ export const StyledFlex = styled.div<flexProps>`
     ${({ height }) => height && `height: ${height};`}
     ${({ padding }) => padding && `padding: ${padding};`}
     ${({ margin }) => margin && `margin: ${margin};`}
+    ${({ bordered }) => bordered && `border: 1px solid red;`}
   ${({ borderColor }) => borderColor && `border-color: ${borderColor};`}
   ${({ borderWidth }) => borderWidth && `border-width: ${borderWidth};`}
     ${({ borderRadius }) => borderRadius && `border-radius: ${borderRadius};`}

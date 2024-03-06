@@ -18,4 +18,6 @@ export interface InputTextProps {
   addAfterElement?: (value?: string) => JSX.Element;
   dir?: string;
   onPressEnter?: () => void;
+  labelFontWeight?: string | number;
+  labelFontSize?: string;
 }
