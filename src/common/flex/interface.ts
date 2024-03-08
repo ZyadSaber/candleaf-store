@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { HtmlHTMLAttributes, ReactNode } from "react";
 
-export interface flexProps {
+export interface flexProps extends HtmlHTMLAttributes<Element> {
   children?: ReactNode;
   justifyContent?: string;
   width?: string;
@@ -22,6 +22,7 @@ export interface flexProps {
   overFlowX?: string;
   overFlowY?: string;
   dir?: "ltr" | "rtl";
+  cursor?: string;
 
   //@media query
   mobileHidden?: boolean;

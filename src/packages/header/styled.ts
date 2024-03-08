@@ -1,44 +1,67 @@
 import styled from "styled-components";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Header } from "antd/es/layout/layout";
-import { primaryColors } from "../../constants/colors";
+import { primaryColors } from "../../colors";
 import { deviceSizes } from "../../constants";
 
-const { lightGray } = primaryColors;
+const { lightGray, darkCharcoal } = primaryColors;
 const { mobile } = deviceSizes;
 
-export const StyledHeader = styled(Header)<{ backgroundColor?: string }>`
+export const StyledHeader = styled(Header)`
   position: sticky;
-  background-color: ${({ backgroundColor }) => backgroundColor};
   top: 0;
   z-index: 1;
   width: 100%;
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 3rem;
-  line-height: normal;
-  height: 7vh;
+  background-color: ${lightGray};
 
+  padding: 20px 0;
+  height: auto;
+`;
+
+export const DivBlock = styled.div`
+  display: flex;
+  font-weight: 400;
+  font-size: 14;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const StyledBrand = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const HeaderContainer = styled.div`
+  margin: auto;
+  max-width: 900px;
   @media ${mobile} {
-    padding: 0 1rem;
+    margin: 0 20px;
   }
 `;
 
 export const StyledImage = styled.img`
-  max-height: 100%;
   cursor: pointer;
-  padding: 5px 0;
-  border-radius: 50%;
+  width: 80px;
+  max-width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  color: ${darkCharcoal};
+`;
+
+export const StyledLogoName = styled.p`
+  margin-left: 10px;
+`;
+
+export const TopBanner = styled.div`
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 20px 0;
 `;
 
 export const StyledCart = styled(ShoppingCartOutlined)`
-  font-size: 30px;
-  color: ${lightGray};
+  font-size: 23px;
+  color: ${darkCharcoal};
   cursor: pointer;
-`;
-
-export const StyledText = styled.p`
-  cursor: pointer;
-  font-size: 14px;
+  padding-left: 10px;
 `;

@@ -1,127 +1,157 @@
-import { useCallback, memo } from "react";
+import { memo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { Drawer, Dropdown } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { Drawer, Badge } from "antd";
+import {
+  PhoneOutlined,
+  MessageOutlined,
+  UserOutlined,
+  MenuOutlined,
+} from "@ant-design/icons";
+import Flex from "../../common/flex";
 import { useFormManager } from "../../hooks";
 import SearchInputField from "../../common/search-input-field";
-import Flex from "../../common/flex";
 import { useSelectAppProvider } from "../app-config-provider";
-import { primaryColors } from "../../constants";
 import DrawerHeader from "./partials/DrawerHeader";
 import DrawerBody from "./partials/DrawerBody";
-import { StyledHeader, StyledImage, StyledCart, StyledText } from "./styled";
-import { items } from "./constants";
+import {
+  StyledHeader,
+  HeaderContainer,
+  DivBlock,
+  StyledBrand,
+  StyledImage,
+  StyledLogoName,
+  TopBanner,
+  StyledCart,
+} from "./styled";
 
 const Header = memo(() => {
-  const { primary, lightGray } = primaryColors;
+  const iconFlexProps = {
+    padding: "0 0 0 20px",
+    justifyContent: "center",
+    align: "center",
+    gap: "5px",
+  };
+
   const navigate = useNavigate();
+
   const {
     state: { authorization, display_name },
   } = useSelectAppProvider();
 
-  const isUserLoggedIn = false;
-
-  const {
-    state: { keyWord, visible },
-    onChange,
-  } = useFormManager({
+  const { state, onChange } = useFormManager({
     initialValues: {
-      visible: false,
+      drawerVisible: false,
+      mobileMenu: false,
       keyWord: "",
     },
   });
 
-  const navigateToHome = useCallback(() => {
-    navigate("/");
-  }, [navigate]);
+  const { keyWord, drawerVisible, mobileMenu } = state;
 
-  const navigateToSignIn = useCallback(() => {
-    navigate(authorization ? "/account" : "/account/log_in");
-  }, [authorization, navigate]);
+  const handleDrawerState = useCallback(
+    (type: string) => () =>
+      onChange({
+        name: type,
+        value: !state[type],
+      }),
+    [onChange, state]
+  );
 
   const handleSearch = useCallback(() => {
     navigate(`/products?keyword=${keyWord}`);
   }, [navigate, keyWord]);
 
-  const handleDrawerState = useCallback(
-    () =>
-      onChange({
-        name: "visible",
-        value: !visible,
-      }),
-    [onChange, visible]
-  );
-
-  const headerSidesProps = {
-    width: "25%",
-    wrap: true,
-    justifyContent: "center",
-    align: "center",
-    height: "100%",
-    gap: "20px",
-  };
+  const navigateToSignIn = useCallback(() => {
+    navigate(authorization ? "/account" : "/account/log_in");
+  }, [authorization, navigate]);
 
   return (
     <>
-      <StyledHeader backgroundColor={primary}>
-        <Flex {...headerSidesProps} mobileHidden>
-          <SearchInputField
-            width="250px"
-            onSearch={handleSearch}
-            name="keyWord"
-            value={keyWord}
-            onChange={onChange}
-            onPressEnter={handleSearch}
-          />
-        </Flex>
-        <StyledImage onClick={navigateToHome} src="/src/imgs/icon.png" alt="" />
-        <Flex
-          {...headerSidesProps}
-          mobileWidth="auto"
-          align="center"
-          justifyContent="center"
-        >
-          <Dropdown
-            menu={{ items: isUserLoggedIn ? items : [] }}
-            placement="bottom"
+      <StyledHeader>
+        <HeaderContainer>
+          <DivBlock>
+            <StyledBrand>
+              <StyledImage src="/src/imgs/logo.png" />
+              <StyledLogoName>The Store</StyledLogoName>
+            </StyledBrand>
+            <TopBanner>
+              <Flex {...iconFlexProps} mobileHidden>
+                <PhoneOutlined />
+                <p>+1-800-800-00</p>
+              </Flex>
+              <Flex {...iconFlexProps} mobileHidden>
+                <MessageOutlined />
+                <p>zyad.2002.best@gmail.com</p>
+              </Flex>
+              <Badge count={2}>
+                <StyledCart onClick={handleDrawerState("drawerVisible")} />
+              </Badge>
+              <Flex
+                padding="7px 14px"
+                width="110PX"
+                align="center"
+                justifyContent="space-around"
+                gap="5px"
+                mobileWidth="auto"
+                onClick={navigateToSignIn}
+                cursor="pointer"
+              >
+                <StyledLogoName>
+                  {authorization ? display_name : "log in"}
+                </StyledLogoName>
+                <UserOutlined />
+              </Flex>
+            </TopBanner>
+          </DivBlock>
+          <Flex
+            width="100%"
+            justifyContent="center"
+            align="center"
+            gap="20px"
+            mobileHidden
           >
-            <Flex
-              padding="7px 14px"
-              width="110PX"
-              align="center"
-              justifyContent="space-around"
-              backgroundColor={lightGray}
-              gap="5px"
-              mobileWidth="auto"
-            >
-              <StyledText onClick={!isUserLoggedIn && navigateToSignIn}>
-                {authorization ? display_name : "log in"}
-              </StyledText>
-              <UserOutlined />
-            </Flex>
-          </Dropdown>
-          <StyledCart onClick={handleDrawerState} />
-        </Flex>
+            {/* {menuContent} */}
+          </Flex>
+          <Flex
+            width="100%"
+            justifyContent="center"
+            align="center"
+            desktopHidden
+          >
+            <MenuOutlined onClick={handleDrawerState("mobileMenu")} />
+          </Flex>
+        </HeaderContainer>
+        <Drawer
+          title="Drawer with extra actions"
+          placement="right"
+          width={500}
+          onClose={handleDrawerState("drawerVisible")}
+          open={drawerVisible}
+          extra={<DrawerHeader />}
+        >
+          <DrawerBody />
+        </Drawer>
       </StyledHeader>
       <Drawer
-        title="Drawer with extra actions"
-        placement="right"
-        width={500}
-        onClose={handleDrawerState}
-        open={visible}
-        extra={<DrawerHeader />}
+        title="Basic Drawer"
+        placement="top"
+        onClose={handleDrawerState("mobileMenu")}
+        open={mobileMenu}
+        height="100%"
       >
-        <Flex width="100%" desktopHidden>
-          <SearchInputField
-            width="250px"
-            onSearch={handleSearch}
-            name="keyWord"
-            value={keyWord}
-            onChange={onChange}
-            onPressEnter={handleSearch}
-          />
+        <Flex width="100%" desktopHidden flexDirection="column" gap="15px">
+          <Flex width="100%">
+            <SearchInputField
+              width="100%"
+              onSearch={handleSearch}
+              name="keyWord"
+              value={keyWord}
+              onChange={onChange}
+              onPressEnter={handleSearch}
+            />
+          </Flex>
+          {/* {menuContent} */}
         </Flex>
-        <DrawerBody />
       </Drawer>
     </>
   );

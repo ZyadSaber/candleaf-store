@@ -28,6 +28,8 @@ export const StyledFlex = styled.div<flexProps>`
   ${({ overFlowX }) => overFlowX && `overflow-y: ${overFlowX};`};
   ${({ minHeight }) => minHeight && `min-height: ${minHeight};`};
 
+  ${({ cursor }) => cursor && `cursor: ${cursor};`}
+
   //@media query
   @media ${mobile} {
     ${({ mobileHidden, mobileWidth }) =>
@@ -35,8 +37,6 @@ export const StyledFlex = styled.div<flexProps>`
   }
   @media ${desktop} {
     ${({ desktopHidden, desktopWidth }) =>
-      desktopHidden
-        ? `display: none`
-        : `width: ${desktopWidth && desktopWidth}`}
+      desktopHidden ? `display: none` : `width: ${desktopWidth}`}
   }
 `;

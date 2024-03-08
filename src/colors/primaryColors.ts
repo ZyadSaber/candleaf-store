@@ -1,4 +1,4 @@
-export const primaryColors = {
+const primaryColors = {
   primary: "#053B50",
   secondary: "#176B87",
   common: "#64CCC5",
@@ -21,4 +21,7 @@ export const primaryColors = {
   lightBlue: "#6099ec",
   required: "#cc4e5c",
   blue: "#007bff",
+  darkCharcoal: "#212127",
 };
+
+export default primaryColors;

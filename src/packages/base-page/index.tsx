@@ -8,20 +8,10 @@ import Footer from "../footer";
 const BasePage = () => {
   return (
     <AppConfigProvider>
-      <Layout
-        style={{
-          maxHeight: "100vh",
-        }}
-      >
+      <Layout>
         <Header />
-        <Content
-          style={{
-            height: "88vh",
-          }}
-        >
-          <Outlet />
-        </Content>
-        <Footer />
+        <Content>{/* <Outlet /> */}</Content>
+        {/* <Footer /> */}
       </Layout>
     </AppConfigProvider>
   );

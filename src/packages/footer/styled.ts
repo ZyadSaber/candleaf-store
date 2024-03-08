@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Footer } from "antd/es/layout/layout";
-import {primaryColors} from "../../constants/colors"
+import { primaryColors } from "../../colors";
 
-const {lightGray} = primaryColors
+const { lightGray } = primaryColors;
 
 export const StyledFooter = styled(Footer)`
   text-align: center;

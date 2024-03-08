@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { SearchOutlined } from "@ant-design/icons";
-import { primaryColors } from "../../constants/colors";
+import { primaryColors } from "../../colors";
 
 const { lightGray, secondary } = primaryColors;
 
