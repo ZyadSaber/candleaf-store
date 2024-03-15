@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Header } from "antd/es/layout/layout";
-import { primaryColors } from "../../colors";
+import { primaryColors } from "../../styles";
 import { deviceSizes } from "../../constants";
 
 const { lightGray, darkCharcoal } = primaryColors;
@@ -14,7 +14,7 @@ export const StyledHeader = styled(Header)`
   width: 100%;
   background-color: ${lightGray};
 
-  padding: 20px 0;
+  padding: 15px 0;
   height: auto;
 `;
 
@@ -56,7 +56,6 @@ export const TopBanner = styled.div`
   display: flex;
   justify-content: right;
   align-items: center;
-  padding: 20px 0;
 `;
 
 export const StyledCart = styled(ShoppingCartOutlined)`

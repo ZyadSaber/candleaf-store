@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { primaryColors } from "../../colors";
+import { primaryColors } from "../../styles";
 import { FloatingLabelContainerPros } from "./interface";
 
 const { primary } = primaryColors;

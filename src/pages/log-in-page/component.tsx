@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import Flex from "../../common/flex";
 import InputText from "../../common/input-text";
 import { useFormManager } from "../../hooks";
-import { primaryColors } from "../../colors";
+import { primaryColors } from "../../styles";
 
 const LogIn = memo(() => {
   const {

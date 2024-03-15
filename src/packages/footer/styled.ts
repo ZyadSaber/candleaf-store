@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Footer } from "antd/es/layout/layout";
-import { primaryColors } from "../../colors";
+import { primaryColors } from "../../styles";
 
 const { lightGray } = primaryColors;
 
