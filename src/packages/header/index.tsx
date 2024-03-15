@@ -23,15 +23,10 @@ import {
   TopBanner,
   StyledCart,
 } from "./styled";
+import Menu from "./partials/Menu";
+import { iconFlexProps } from "./constants";
 
 const Header = memo(() => {
-  const iconFlexProps = {
-    padding: "0 0 0 20px",
-    justifyContent: "center",
-    align: "center",
-    gap: "5px",
-  };
-
   const navigate = useNavigate();
 
   const {
@@ -109,8 +104,9 @@ const Header = memo(() => {
             align="center"
             gap="20px"
             mobileHidden
+            style={{}}
           >
-            {/* {menuContent} */}
+            <Menu />
           </Flex>
           <Flex
             width="100%"
@@ -138,6 +134,7 @@ const Header = memo(() => {
         onClose={handleDrawerState("mobileMenu")}
         open={mobileMenu}
         height="100%"
+        destroyOnClose
       >
         <Flex width="100%" desktopHidden flexDirection="column" gap="15px">
           <Flex width="100%">
@@ -150,7 +147,7 @@ const Header = memo(() => {
               onPressEnter={handleSearch}
             />
           </Flex>
-          {/* {menuContent} */}
+          <Menu />
         </Flex>
       </Drawer>
     </>

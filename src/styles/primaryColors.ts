@@ -22,6 +22,8 @@ const primaryColors = {
   required: "#cc4e5c",
   blue: "#007bff",
   darkCharcoal: "#212127",
+  darkShadow: "#cacaca",
+  lightShadow: "#f6f6f6",
 };
 
 export default primaryColors;
