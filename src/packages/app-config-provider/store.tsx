@@ -11,6 +11,7 @@ const AppConfigProvider = ({ children }: AppConfigProviderProps) => {
     <Store.Provider
       value={{
         state,
+        //@ts-expect-error
         setAuthValues: setContext,
       }}
     >

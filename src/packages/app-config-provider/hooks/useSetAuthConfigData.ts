@@ -10,6 +10,7 @@ const useSetAuthConfigData = () => {
 
   return useCallback(
     (values: RecordWithAnyType) => {
+      //@ts-expect-error
       setAuthValues(() => ({
         ...state,
         ...values,
