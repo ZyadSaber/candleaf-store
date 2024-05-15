@@ -1,7 +1,7 @@
 import { memo } from "react";
 
 const SignInPage = memo(() => {
-  return <></>;
+  return <>Home</>;
 });
 
 export default SignInPage;

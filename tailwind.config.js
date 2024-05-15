@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         main: "#56B280",
-        dark: "#272277",
+        dark: "#272727",
       },
     },
   },
