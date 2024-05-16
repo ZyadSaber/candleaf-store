@@ -6,6 +6,7 @@ export default {
       colors: {
         main: "#56B280",
         dark: "#272727",
+        glossy: "rgba(247,248,250, 0.8)",
       },
     },
   },
