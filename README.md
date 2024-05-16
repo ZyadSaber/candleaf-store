@@ -42,4 +42,12 @@ Leaf Store is an online e-commerce platform for selling plants and gardening sup
    ```sh
    git clone https://github.com/yourusername/leaf-store.git
    cd leaf-store
-```
+   ```
+
+2. **Install dependencies:**:
+   ```sh
+    npm install
+    cd client
+    npm install
+    cd ..
+    ```
