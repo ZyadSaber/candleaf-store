@@ -1,5 +1,6 @@
 import styled from "styled-components";
+import { headingImage } from "../../images";
 
-export const StyledTextOverImage = styled.div`
-  transform: translate(-50%, -50%);
+export const StyledImageBackground = styled.div`
+  background-image: url(${headingImage});
 `;

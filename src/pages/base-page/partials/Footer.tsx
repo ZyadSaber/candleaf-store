@@ -1,10 +1,11 @@
 import { memo } from "react";
+import { footerImage } from "../../../images"
 
 const Footer = memo(() => (
     <div className="w-full px-10 md:px-28 bg-dark text-white pt-16 pb-24">
         <div className="flex flex-col md:flex-row justify-between items-center w-full h-full border-t pt-3 border-white gap-5">
             <div className="md:w-1/6 w-full flex flex-col gap-4">
-                <img src="/src/images/footerImage.png" alt="" />
+                <img src={footerImage} alt="" />
                 <p>Your natural candle made for your home and your wellness</p>
             </div>
             <div className="flex flex-col md:flex-row gap-16  w-full md:w-auto">

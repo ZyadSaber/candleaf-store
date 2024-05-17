@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { useVisibleState } from "../../../hooks"
+import { logo } from "../../../images"
 import Nav from "./Nav"
 import CartAvatarSection from "./CartAvatarSection"
 import { StyledMobileMenuIconContainer } from "../styled"
@@ -18,7 +19,7 @@ const Header = memo(() => {
                 </StyledMobileMenuIconContainer>
             </div>
             <div className="h-full flex items-center gap-2 font-semibold py-6">
-                <img src="/src/images/image.png" className="h-full" alt="" />
+                <img src={logo} className="h-full" alt="" />
                 <p className="text-main">Candleaf</p>
             </div>
             <div className="hidden md:block">
