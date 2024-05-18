@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { Link } from "react-router-dom";
 import { useVisibleState } from "../../../hooks"
 import { logo } from "../../../images"
 import Nav from "./Nav"
@@ -18,10 +19,10 @@ const Header = memo(() => {
                     <span className="block absolute h-1 w-full bg-main rounded-lg opacity-100 left-0 rotate-0 ease-in-out duration-200 top-5"></span>
                 </StyledMobileMenuIconContainer>
             </div>
-            <div className="h-full flex items-center gap-2 font-semibold py-6">
+            <Link to="" className="h-full flex items-center gap-2 font-semibold py-6">
                 <img src={logo} className="h-full" alt="" />
                 <p className="text-main">Candleaf</p>
-            </div>
+            </Link>
             <div className="hidden md:block">
                 <Nav />
             </div>
