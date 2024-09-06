@@ -27,6 +27,9 @@ const config = {
         faded: "#5E6E89",
         second: "#F7F8FA",
       },
+      backgroundImage: {
+        headingImage: "url('/heading-image.svg')",
+      },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },

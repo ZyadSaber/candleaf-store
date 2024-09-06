@@ -73,7 +73,7 @@ const FormInputs = () => {
 
             <p className="w-full flex justify-center items-center gap-3">
                 Not Signed In?
-                <Link href="signUp" className="text-blue-400 hover:text-blue-300">Sign Up</Link>
+                <Link href="signup" className="text-blue-400 hover:text-blue-300">Sign Up</Link>
             </p>
         </div>
     )

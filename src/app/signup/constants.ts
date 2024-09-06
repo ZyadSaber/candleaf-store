@@ -1,15 +1,30 @@
 import { RecordWithAnyData } from "@/types";
-import { login } from "@/lib/auth";
 
 export const initialValues = {
-  user_name: "",
+  first_name: "",
+  last_name: "",
+  email: "",
   password: "",
+  rePassword: "",
 };
 
-export const validate = ({ user_name, password }: RecordWithAnyData) => {
-  let dd: any = {};
+export const validate = ({
+  first_name,
+  last_name,
+  email,
+  password,
+  rePassword,
+}) => {
+  let obj: RecordWithAnyData = {};
 
-  user_name.trim() === "" && (dd.user_name = "Username is required");
-  password.trim() === "" && (dd.password = "Password is required");
-  return dd;
+  first_name.trim() === "" && (obj.first_name = "First Name is required");
+  last_name.trim() === "" && (obj.last_name = "Last Name is required");
+  email.trim() === "" && (obj.email = "Email is required");
+  password.trim() === "" && (obj.password = "Password is required");
+  rePassword.trim() === "" && (obj.rePassword = "rePassword is required");
+  if (password !== rePassword) {
+    obj.password = "Passwords do not match.";
+    obj.rePassword = "Passwords do not match.";
+  }
+  return obj;
 };

@@ -15,7 +15,7 @@ const CartAvatarSection = async () => {
             <Link className="cursor-pointer flex justify-center items-center gap-2" href={user ? "profile" : "login"}>
                 <PersonOutlineOutlinedIcon className="w-9 h-9" />
                 <div className="flex flex-col">
-                    <p className="hidden md:block text-base">{user ? `hello, ${first_name}` : "login/sign up"}</p>
+                    <p className="hidden md:block text-base">{user ? `Hello, ${first_name}` : "login/sign up"}</p>
                     {!!email && <p className="hidden md:block text-xs">{email}</p>}
                 </div>
             </Link>

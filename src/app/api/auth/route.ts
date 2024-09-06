@@ -1,6 +1,7 @@
 import { hash } from "argon2";
 import { prisma } from "@/lib/prisma";
 import { errorMessage, successMessage } from "@/lib/apiResponse";
+import { login } from "@/lib/auth";
 
 export const POST = async (req: Request) => {
   try {
@@ -21,6 +22,11 @@ export const POST = async (req: Request) => {
         email,
         password: await hash(password),
       },
+    });
+
+    await login({
+      email: email,
+      password: password,
     });
 
     return successMessage();

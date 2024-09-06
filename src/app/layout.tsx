@@ -12,8 +12,8 @@ const fontSans = FontSans({
 
 
 export const metadata: Metadata = {
-  title: "Click Sale System",
-  description: "Simple Sales Application",
+  title: "Candleaf Store",
+  description: "Home Page for candleaf store",
 };
 
 export default function RootLayout({

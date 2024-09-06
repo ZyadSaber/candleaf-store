@@ -5,7 +5,7 @@ import usePrevious from "./usePrevious";
 interface useFormManagerProps {
   initialValues: RecordWithAnyData;
   submitFN?: (data: RecordWithAnyData) => void;
-  validate?: (data: RecordWithAnyData) => RecordWithAnyData;
+  validate?: (data: RecordWithAnyData | any) => RecordWithAnyData;
 }
 
 const useFormManager = ({
@@ -14,7 +14,9 @@ const useFormManager = ({
   validate,
 }: useFormManagerProps) => {
   const [state, setState] = useState<typeof initialValues>(initialValues);
-  const [errors, setErrors] = useState<RecordWithAnyData>({});
+  const [errors, setErrors] = useState<
+    RecordWithAnyData | typeof initialValues
+  >({});
 
   const hasAnyFieldChangedRef = useRef(false);
   const preValues = usePrevious(initialValues);
@@ -56,6 +58,7 @@ const useFormManager = ({
       setErrors(__errors);
       return;
     } else {
+      setErrors({});
       submitFN?.(state);
     }
   }, [state, submitFN, validate]);

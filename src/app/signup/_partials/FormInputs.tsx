@@ -13,7 +13,7 @@ const FormInputs = () => {
     const router = useRouter()
 
     const { mutate, loading } = usePost({
-        url: "auth/login"
+        url: "auth"
     })
 
     const submitFN = useCallback((data: RecordWithAnyData) => {
@@ -30,8 +30,11 @@ const FormInputs = () => {
     }, [mutate, router])
 
     const { values: {
-        user_name,
-        password
+        first_name,
+        last_name,
+        email,
+        password,
+        rePassword
     },
         onChange,
         errors,
@@ -48,20 +51,20 @@ const FormInputs = () => {
                 floatingLabel={false}
                 label="First name"
                 width="47%"
-                name={"user_name"}
-                value={user_name}
+                name="first_name"
+                value={first_name}
                 onChange={onChange}
-                error={errors?.user_name}
+                error={errors?.first_name}
                 disabled={loading}
             />
             <InputText
                 floatingLabel={false}
                 label="Last Name"
                 width="47%"
-                name={"user_name"}
-                value={user_name}
+                name={"last_name"}
+                value={last_name}
                 onChange={onChange}
-                error={errors?.user_name}
+                error={errors?.last_name}
                 disabled={loading}
             />
             <InputText
@@ -69,10 +72,10 @@ const FormInputs = () => {
                 label="Email"
                 type="email"
                 width="100%"
-                name={"user_name"}
-                value={user_name}
+                name={"email"}
+                value={email}
                 onChange={onChange}
-                error={errors?.user_name}
+                error={errors?.email}
                 disabled={loading}
             />
             <PasswordInput
@@ -89,13 +92,13 @@ const FormInputs = () => {
                 floatingLabel={false}
                 label="Retype password"
                 width="100%"
-                name={"password"}
-                value={password}
+                name={"rePassword"}
+                value={rePassword}
                 onChange={onChange}
-                error={errors?.password}
+                error={errors?.rePassword}
                 disabled={loading}
             />
-            <Button variant="contained" onClick={submit}>Sign In</Button>
+            <Button variant="contained" onClick={submit} className="w-full">Sign Up</Button>
 
             <p className="w-full flex justify-center items-center gap-3">
                 Already have an account?

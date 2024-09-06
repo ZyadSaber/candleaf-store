@@ -2,14 +2,14 @@ import { RecordWithAnyData } from "@/types";
 import { login } from "@/lib/auth";
 
 export const initialValues = {
-  user_name: "",
+  email: "",
   password: "",
 };
 
-export const validate = ({ user_name, password }: RecordWithAnyData) => {
-  let dd: any = {};
+export const validate = ({ email, password }: RecordWithAnyData) => {
+  let obj: RecordWithAnyData = {};
 
-  user_name.trim() === "" && (dd.user_name = "Username is required");
-  password.trim() === "" && (dd.password = "Password is required");
-  return dd;
+  email.trim() === "" && (obj.email = "Username is required");
+  password.trim() === "" && (obj.password = "Password is required");
+  return obj;
 };
