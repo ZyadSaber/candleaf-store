@@ -15,8 +15,8 @@ const ProductCard = ({ product_name, price, product_description, product_image, 
     const router = useRouter();
     return (
         <div className="p-5 w-full md:w-1/4 hover:shadow-lg transition-shadow rounded-lg" onClick={() => router.push(`/products/${product_id}`)}>
-            <div className="border flex flex-col h-56 justify-center items-center rounded-md">
-                <Image src={`/products_images/${product_image}`} alt={product_image} width={300} height={50} className="h-3/5" />
+            <div className="border flex flex-col h-80 justify-center items-center rounded-md">
+                <Image src={`/products_images/${product_image}`} alt={product_image} width={400} height={50} className="h-3/5" />
                 <div className="h-2/5 border w-full px-6 py-3 gap-1.5 flex flex-col">
                     <div className="flex justify-between w-full">
                         <h4 className="text-base font-medium">

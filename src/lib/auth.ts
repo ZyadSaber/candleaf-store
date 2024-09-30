@@ -1,5 +1,4 @@
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
 import { SignJWT, jwtVerify } from "jose";
 import { verify } from "argon2";
 import { prisma } from "./prisma";
@@ -31,6 +30,7 @@ export async function login({ email, password }) {
     password: userPassword,
     email: userEmail,
     first_name,
+    id,
   } = foundUser || {};
 
   const goodPassword = await verify(userPassword || "", password);
@@ -42,6 +42,7 @@ export async function login({ email, password }) {
       user: {
         email: userEmail,
         first_name,
+        user_id: id,
       },
       expires,
     });

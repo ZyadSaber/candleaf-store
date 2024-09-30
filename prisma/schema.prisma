@@ -19,11 +19,15 @@ model users {
   first_name String
   last_name  String
 
-  email      String     @unique
+  email      String   @unique
   password   String
-  created_at DateTime   @default(now())
-  updated_ad DateTime   @updatedAt
+  created_at DateTime @default(now())
+  updated_ad DateTime @updatedAt
+
+  admin Boolean? @default(false)
+
   products   products[]
+  cart_items cart_items[]
 }
 
 model products {
@@ -39,4 +43,21 @@ model products {
   updated_by Int?
 
   users users? @relation(fields: [updated_by], references: [id])
+}
+
+model cart_items {
+  cart_item_id Int @id @default(autoincrement())
+  quantity     Int
+  product_id   Int
+
+  preference String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user_id Int
+
+  order_no Int?
+
+  users users? @relation(fields: [user_id], references: [id])
 }
