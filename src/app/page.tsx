@@ -1,7 +1,7 @@
 import Link from "next/link"
+import Image from "next/image"
 import ProductView from "./_partials/ProductView"
 import CustomerReview from "./_partials/CustomerReview"
-import Image from "next/image"
 
 const App = () => (
   <>
@@ -13,7 +13,7 @@ const App = () => (
           The nature candle
         </h4>
         <p className="text-lg font-normal text-center">All handmade with natural soy wax, Candleaf is a companion for all your pleasure moments </p>
-        <Link className="bg-main text-white px-14 py-3 rounded-lg text-xl font-medium mt-10" href="/products">Discovery our collection</Link>
+        <Link className="bg-main text-white px-14 py-3 rounded-lg text-xl font-medium mt-10 hover:bg-green-700 transition" href="/products">Discovery our collection</Link>
       </div>
     </div>
 
@@ -29,7 +29,7 @@ const App = () => (
           <p><span className="font-medium">Handmade:</span> All candles are craftly made with love.</p>
           <p><span className="font-medium">Long burning:</span> No more waste. Created for last long.</p>
         </div>
-        <button className="w-48 bg-main text-white h-10 rounded-md text-md font-medium">Learn More</button>
+        <button className="w-48 bg-main text-white h-10 rounded-md text-md font-medium hover:bg-green-700 transition">Learn More</button>
       </div>
       <div className="flex flex-col w-full md:w-6/12 h-full">
         <Image src="/section2.png" alt="section2.png" width={1000} height={500} />

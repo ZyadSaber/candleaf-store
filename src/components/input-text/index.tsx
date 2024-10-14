@@ -17,7 +17,8 @@ const InputText = ({
     autoComplete,
     required,
     width,
-    disabled
+    disabled,
+    addOnLabel
 }: InputTextProps) => {
 
     const handleInputChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +29,10 @@ const InputText = ({
         <FormControl style={{
             width
         }}>
-            {!floatingLabel && <FormLabel htmlFor={name}>{label}</FormLabel>}
+            {!floatingLabel && <FormLabel htmlFor={name}>
+                {label}
+                {addOnLabel?.()}
+            </FormLabel>}
             <TextField
                 className='p-0'
                 value={value}

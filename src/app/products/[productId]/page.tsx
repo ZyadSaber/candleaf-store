@@ -67,6 +67,7 @@ const ProductById = async ({ params: { productId } }) => {
                             className="w-full"
                             name="qty"
                             type="number"
+                            inputProps={{ min: 1 }}
                         />
                     </div>
                     <div className="w-3/5 flex flex-col gap-4">

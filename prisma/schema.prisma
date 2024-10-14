@@ -42,7 +42,8 @@ model products {
   updated_at DateTime @updatedAt
   updated_by Int?
 
-  users users? @relation(fields: [updated_by], references: [id])
+  users      users?       @relation(fields: [updated_by], references: [id])
+  cart_items cart_items[]
 }
 
 model cart_items {
@@ -59,5 +60,6 @@ model cart_items {
 
   order_no Int?
 
-  users users? @relation(fields: [user_id], references: [id])
+  users    users?    @relation(fields: [user_id], references: [id])
+  products products? @relation(fields: [product_id], references: [product_id])
 }

@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface InputTextProps {
   floatingLabel?: boolean;
   label?: string;
@@ -12,4 +14,5 @@ export interface InputTextProps {
   required?: boolean;
   width?: string;
   disabled?: boolean;
+  addOnLabel?: () => ReactNode;
 }
