@@ -70,7 +70,7 @@ const Cart = async () => {
                             <TableCell rowSpan={3} />
                             <TableCell className="font-semibold">Subtotal</TableCell>
                             <TableCell align="right" className="font-semibold">{invoiceSubtotal.toFixed(2)}</TableCell>
-                            <TableCell align="right" className="font-semibold"><Link href="/orderDetails" className="bg-main py-1.5 px-2.5 rounded">Check-out</Link></TableCell>
+                            <TableCell align="right" className="font-semibold"><Link href={computedData.length !== 0 ? "/orderDetails" : ""} className="bg-main py-1.5 px-2.5 rounded">Check-out</Link></TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
