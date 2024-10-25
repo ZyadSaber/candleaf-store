@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model users {
+  id Int @id @default(autoincrement())
+
+  first_name String
+  last_name  String
+
+  email      String   @unique
+  password   String
+  created_at DateTime @default(now())
+  updated_ad DateTime @updatedAt
+
+  admin Boolean? @default(false)
+
+  products   products[]
+  cart_items cart_items[]
+}
+
+model products {
+  product_id Int @id @default(autoincrement())
+
+  product_name        String
+  price               Float
+  product_description String?
+  product_image       String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  updated_by Int?
+
+  users      users?       @relation(fields: [updated_by], references: [id])
+  cart_items cart_items[]
+}
+
+model cart_items {
+  cart_item_id Int @id @default(autoincrement())
+  quantity     Int
+  product_id   Int
+
+  preference String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user_id Int
+
+  order_no Int?
+
+  users    users?    @relation(fields: [user_id], references: [id])
+  products products? @relation(fields: [product_id], references: [product_id])
+}
