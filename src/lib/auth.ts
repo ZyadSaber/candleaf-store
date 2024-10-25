@@ -14,11 +14,15 @@ export async function encrypt(payload: any) {
     .sign(key);
 }
 
-export async function decrypt(input: string) {
-  const { payload } = await jwtVerify(input, key, {
+export async function decrypt(input) {
+  return await jwtVerify(input, key, {
     algorithms: ["HS256"],
-  });
-  return payload;
+  })
+    .then(({ payload }) => payload)
+    .catch((error) => {
+      console.error("Signature verification failed:", error.message);
+      // throw Error("Invalid or expired token");
+    });
 }
 
 export async function login({ email, password }) {

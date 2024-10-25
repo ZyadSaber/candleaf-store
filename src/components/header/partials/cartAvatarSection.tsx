@@ -18,7 +18,6 @@ const CartAvatarSection = async () => {
     const foundItems = await prisma.cart_items.count({
         where: {
             user_id: id,
-            order_no: null
         }
     })
 
