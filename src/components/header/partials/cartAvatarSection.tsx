@@ -1,7 +1,7 @@
 import Link from "next/link";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import { getSession } from "@/lib/auth";
+import { getSession, logout } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { RecordWithAnyData } from "@/types";
 
@@ -29,6 +29,7 @@ const CartAvatarSection = async () => {
                     {!!email && <p className="hidden md:block text-xs">{email}</p>}
                 </div>
             </Link>
+            <button>LogOut</button>
         </div>
     )
 }
