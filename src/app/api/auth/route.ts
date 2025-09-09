@@ -1,4 +1,4 @@
-import { hash } from "argon2";
+import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { errorMessage, successMessage } from "@/lib/apiResponse";
 import { login } from "@/lib/auth";
@@ -20,7 +20,7 @@ export const POST = async (req: Request) => {
         first_name,
         last_name,
         email,
-        password: await hash(password),
+        password: await bcrypt.hash(password, 12),
       },
     });
 

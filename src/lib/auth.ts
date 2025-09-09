@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { SignJWT, jwtVerify } from "jose";
-import { verify } from "argon2";
+import bcrypt from "bcryptjs";
 import { prisma } from "./prisma";
 import { RecordWithAnyData } from "@/types";
 
@@ -38,7 +38,7 @@ export async function login({ email, password }) {
     admin,
   } = foundUser || {};
 
-  const goodPassword = await verify(userPassword || "", password);
+  const goodPassword = await bcrypt.compare(password, userPassword || "");
   if (!goodPassword) return "Invalid credentials";
 
   if (goodPassword) {
